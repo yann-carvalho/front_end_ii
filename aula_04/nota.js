@@ -25,19 +25,17 @@ const rl = readline.createInterface({
 
 let notas = [];
 
-rl.question('Informe a nota 1: ', (nota1) => {
-    notas.push(parseFloat(nota1));
-    rl.question('Informe a nota 2: ', (nota2) => {
-        notas.push(parseFloat(nota2));
-        rl.question('Informe a nota 3: ', (nota3) => {
-            notas.push(parseFloat(nota3));
-            
+for (let i = 0; i < 3; i++) {
+    rl.question(`Informe a nota ${i+1}: `, (nota) => {
+        notas.push(parseFloat(nota));
+
+        if (notas.length === 3) {
             // Calcula a média
             const media = calcularMedia(notas);
-            
+
             // Verifica a situação do aluno
             const situacao = verificarAprovacao(media);
-            
+
             // Imprime a situação atual
             console.log(`A média do aluno é ${media.toFixed(2)}, portanto ele está ${situacao}.`);
 
@@ -55,6 +53,6 @@ rl.question('Informe a nota 1: ', (nota1) => {
             } else {
                 rl.close();
             }
-        });
+        }
     });
-});
+}
